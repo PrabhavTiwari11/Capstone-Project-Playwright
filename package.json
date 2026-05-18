@@ -1,0 +1,22 @@
+{
+  "name": "capstone-project-playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrabhavTiwari11/Capstone-Project-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrabhavTiwari11/Capstone-Project-Playwright/issues"
+  },
+  "homepage": "https://github.com/PrabhavTiwari11/Capstone-Project-Playwright#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.8.0"
+  }
+}

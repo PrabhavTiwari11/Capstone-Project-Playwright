@@ -1,0 +1,87 @@
+Project Title : 
+-----------------
+Automation Testing of nopCommerce Demo Store Website Using Playwright
+
+This project is based on automation testing of the nopCommerce Demo Store website using Playwright.
+nopCommerce Demo Store is an online shopping website where users can register, login, search products, add items to cart or wishlist, place orders, manage addresses, and complete payments.
+
+In this project, different features of the website will be tested automatically using Playwright.
+The main purpose of the project is to check whether all important functionalities of the website are working properly or not. The testing includes modules like login, registration, product search, shopping cart, wishlist, checkout, payment, and user profile management.
+
+This project is created as a QA automation capstone project to learn and demonstrate different testing concepts such as functional testing, UI testing, regression testing, API testing, and cross-browser testing in a simple and practical way.
+   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Website Details
+-----------------
+Field	                                                             Details
+Website Name	                                                     nopCommerce Demo Store
+Website URL	                                                         https://demo.nopcommerce.com/
+Testing Tool	                                                     Playwright
+Programming Language	                                             JavaScript
+IDE Used	                                                         VS Code
+Version Control	                                                     Git & GitHub
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Services Tested
+-------------------
+
+
+1. Authentication
+
+- User Registration
+- User Login
+- Forgot Password
+- Logout
+- Session Validation
+
+2. Product Search
+
+- Search valid products
+- Search invalid products
+- Category-based search
+- Advanced search validation
+
+3. Product Details
+
+- Product image validation
+- Product price validation
+- Product specification check
+- Product review validation
+
+4. Shopping Cart
+
+- Add to cart
+- Remove from cart
+- Update quantity
+- Cart total validation
+
+5. Wishlist Module
+
+- Add product to wishlist
+- Remove wishlist item
+- Move wishlist item to cart
+- Wishlist persistence validation
+
+6. Checkout
+
+- Billing address validation
+- Shipping method selection
+- Order summary validation
+- Checkout confirmation
+
+7. Payment
+
+- Payment method selection
+- Payment information validation
+- Payment confirmation
+- Order success validation
+
+8. User Profile / Order History
+
+- View user profile
+- Manage addresses
+- View previous orders
+- Update account details
