@@ -27,6 +27,8 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
       continue-on-error: true # Ensure report generates even if tests fail
+    - name: Generate Allure Report
+      run: npx allure generate allure-results -o allure-report --clean
     - name: Deploy Allure Report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3
