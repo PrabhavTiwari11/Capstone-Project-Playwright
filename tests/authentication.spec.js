@@ -150,16 +150,16 @@ test('AUTH TC06 Register with valid details', async ({ page }) => {
     await expect(page.locator('#Email-error')).toBeVisible();
   });
 
-  // test('AUTH TC10 Login with invalid email format', async ({ page }) => {
-  //   await page.goto('/login');
+  test('AUTH TC10 Login with invalid email format', async ({ page }) => {
+    await page.goto('/login');
 
-  //   await page.locator('#Email').fill('invalidemail');
-  //   await page.locator('#Password').fill('Password@123');
+    await page.locator('#Email').fill('invalidemail');
+    await page.locator('#Password').fill('Password@123');
 
-  //   await page.locator('button.login-button').click();
+    await page.locator('button.login-button').click();
 
-  //   await expect(page.locator('#Email-error')).toBeVisible();
-  // });
+    await expect(page.locator('#Email-error')).toBeVisible();
+  });
 
 
 
