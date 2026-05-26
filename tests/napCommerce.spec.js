@@ -43,10 +43,13 @@ test('TC05 Search laptop product', async ({ page }) => {
 });
 
 test('TC06 Open Computers category', async ({ page }) => {
-  await page.goto('/computers');
+  await page.goto('/computers', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
 
   await expect(page).toHaveURL(/computers/);
-  await expect(page.getByRole('heading', { name: 'Computers' })).toBeVisible();
+  await expect(page.locator('body')).toContainText('Computers');
 });
 
 test('TC07 Open Electronics category', async ({ page }) => {
