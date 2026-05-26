@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","21530","AUTH TC09 Login with empty fields should show validation","chromium","2026-05-26","passed","2026-05-26","nopCommerce Authentication Test Cases","authentication.spec.js","",""
+"","16648","AUTH TC07 Login page should open","chromium","2026-05-26","passed","2026-05-26","nopCommerce Authentication Test Cases","authentication.spec.js","",""
+"","13164","AUTH TC10 Login with invalid email format","chromium","2026-05-26","passed","2026-05-26","nopCommerce Authentication Test Cases","authentication.spec.js","",""
+"","13910","AUTH TC08 Login form fields should be visible","chromium","2026-05-26","passed","2026-05-26","nopCommerce Authentication Test Cases","authentication.spec.js","",""
+"","11556","AUTH TC06 Register with valid details","chromium","2026-05-26","passed","2026-05-26","nopCommerce Authentication Test Cases","authentication.spec.js","",""
