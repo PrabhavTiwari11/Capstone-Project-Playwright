@@ -44,7 +44,9 @@ test('TC05 Search laptop product', async ({ page }) => {
 
 test('TC06 Open Computers category', async ({ page }) => {
   await page.goto('/computers');
-  await expect(page.locator('h1')).toContainText('Computers');
+
+  await expect(page).toHaveURL(/computers/);
+  await expect(page.getByRole('heading', { name: 'Computers' })).toBeVisible();
 });
 
 test('TC07 Open Electronics category', async ({ page }) => {
