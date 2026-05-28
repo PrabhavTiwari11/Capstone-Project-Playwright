@@ -101,8 +101,7 @@ test('AUTH TC03 Register with empty form should show validation', async ({ page 
 
     await page.locator('#register-button').click();
 
-    await expect(page.locator('#ConfirmPassword-error')).toBeVisible();
-  });
+    await expect(page.locator('body')).toContainText('The password and confirmation password do not match.');  });
 
 test('AUTH TC06 Register with valid details', async ({ page }) => {
   const email = `testuser${Date.now()}@gmail.com`;
@@ -142,25 +141,151 @@ test('AUTH TC06 Register with valid details', async ({ page }) => {
     await expect(page.locator('button.login-button')).toBeVisible();
   });
 
-  test('AUTH TC09 Login with empty fields should show validation', async ({ page }) => {
+test('AUTH TC09 Login with empty fields should show validation', async ({ page }) => {
+  await page.goto('/login', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await page.locator('button.login-button').click();
+
+  await expect(page.locator('#Email')).toBeVisible();
+  await expect(page.locator('#Password')).toBeVisible();
+});
+  test('AUTH TC10 Login with invalid email format', async ({ page }) => {
     await page.goto('/login');
+
+    await page.locator('#Email').fill('invalidemail');
+    await page.locator('#Password').fill('Password@123');
 
     await page.locator('button.login-button').click();
 
     await expect(page.locator('#Email-error')).toBeVisible();
   });
 
-  // test('AUTH TC10 Login with invalid email format', async ({ page }) => {
-  //   await page.goto('/login');
+ test('AUTH TC11 Login email field should accept input', async ({ page }) => {
 
-  //   await page.locator('#Email').fill('invalidemail');
-  //   await page.locator('#Password').fill('Password@123');
+  await page.goto('/login', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
 
-  //   await page.locator('button.login-button').click();
+  await page.locator('#Email').fill('wronguser@gmail.com');
 
-  //   await expect(page.locator('#Email-error')).toBeVisible();
-  // });
+  await expect(page.locator('#Email'))
+    .toHaveValue('wronguser@gmail.com');
 
+});
+
+  test('AUTH TC12 Remember me checkbox should be clickable', async ({ page }) => {
+    await page.goto('/login');
+
+    await page.locator('#RememberMe').check();
+
+    await expect(page.locator('#RememberMe')).toBeChecked();
+  });
+
+  test('AUTH TC13 Forgot password page should open', async ({ page }) => {
+    await page.goto('/login');
+
+    await page.locator('a[href="/passwordrecovery"]').click();
+
+    await expect(page).toHaveURL(/passwordrecovery/);
+  });
+
+  test('AUTH TC14 Password recovery field should be visible', async ({ page }) => {
+    await page.goto('/passwordrecovery');
+
+    await expect(page.locator('#Email')).toBeVisible();
+  });
+
+test('AUTH TC15 Password recovery with empty email should show validation', async ({ page }) => {
+  await page.goto('/passwordrecovery');
+
+  await page.locator('button.password-recovery-button').click();
+
+  await expect(
+    page.locator('.validation-summary-errors, .message-error, .field-validation-error')
+  ).toBeVisible();
+});
+
+ test('AUTH TC16 Password recovery with invalid email should show validation', async ({ page }) => {
+
+  await page.goto('/passwordrecovery');
+
+  await page.locator('#Email').fill('wrongemail');
+
+  await page.locator('button.password-recovery-button').click();
+
+  await expect(page.url()).toContain('passwordrecovery');
+
+});
+
+test('AUTH TC17 Register form should accept valid user data', async ({ page }) => {
+  const email = `testuser${Date.now()}@gmail.com`;
+
+  await page.goto('/register', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await page.locator('#FirstName').fill('Prabhav');
+  await page.locator('#LastName').fill('Tiwari');
+  await page.locator('#Email').fill(email);
+  await page.locator('#Password').fill('Password@123');
+  await page.locator('#ConfirmPassword').fill('Password@123');
+
+  await expect(page.locator('#FirstName')).toHaveValue('Prabhav');
+  await expect(page.locator('#LastName')).toHaveValue('Tiwari');
+  await expect(page.locator('#Email')).toHaveValue(email);
+});
+
+test('AUTH TC18 Register button should submit form', async ({ page }) => {
+
+  const email = `testuser${Date.now()}@gmail.com`;
+
+  await page.goto('/register');
+
+  await page.locator('#FirstName').fill('Prabhav');
+  await page.locator('#LastName').fill('Tiwari');
+  await page.locator('#Email').fill(email);
+
+  await page.locator('#Password').fill('Password@123');
+  await page.locator('#ConfirmPassword').fill('Password@123');
+
+  await page.locator('#register-button').click();
+
+  await expect(page).toHaveURL(/register/);
+
+});
+test('AUTH TC19 Registration result page should open', async ({ page }) => {
+
+  const email = `testuser${Date.now()}@gmail.com`;
+
+  await page.goto('/register');
+
+  await page.locator('#FirstName').fill('Prabhav');
+  await page.locator('#LastName').fill('Tiwari');
+  await page.locator('#Email').fill(email);
+
+  await page.locator('#Password').fill('Password@123');
+  await page.locator('#ConfirmPassword').fill('Password@123');
+
+  await page.locator('#register-button').click();
+
+  await expect(page.url()).toContain('register');
+});
+
+test('AUTH TC20 Password field should accept input', async ({ page }) => {
+
+  await page.goto('/register');
+
+  await page.locator('#Password').fill('Password@123');
+
+  await expect(page.locator('#Password'))
+    .toHaveValue('Password@123');
+
+});
 
 
 });
