@@ -1,0 +1,252 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: authentication.spec.js >> nopCommerce Authentication Test Cases >> AUTH TC11 Login with wrong credentials should show error
+- Location: tests\authentication.spec.js:164:7
+
+# Error details
+
+```
+Error: expect(locator).toContainText(expected) failed
+
+Locator: locator('body')
+Expected substring: "Login was unsuccessful"
+Received string:    "demo.nopcommerce.comPerforming security verificationThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.Verification successful. Waiting for demo.nopcommerce.com to respondRay ID: a0247d3cba85e85cPerformance and Security by CloudflarePrivacy"
+Timeout: 15000ms
+
+Call log:
+  - Expect "toContainText" with timeout 15000ms
+  - waiting for locator('body')
+    10 × locator resolved to <body>…</body>
+       - unexpected value ""
+    23 × locator resolved to <body>…</body>
+       - unexpected value "demo.nopcommerce.comPerforming security verificationThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.Verification successful. Waiting for demo.nopcommerce.com to respondRay ID: a0247d3cba85e85cPerformance and Security by CloudflarePrivacy"
+
+```
+
+```yaml
+- main:
+  - heading "demo.nopcommerce.com" [level=1]
+  - heading "Performing security verification" [level=2]
+  - paragraph: This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+- contentinfo:
+  - text: "Ray ID:"
+  - code: a0247d3cba85e85c
+  - text: Performance and Security by
+  - link "Cloudflare":
+    - /url: https://www.cloudflare.com?utm_source=challenge&utm_campaign=m
+  - link "Privacy":
+    - /url: https://www.cloudflare.com/privacypolicy/
+```
+
+# Test source
+
+```ts
+  72  | // // -Checks whether email validation error appears.
+  73  | 
+  74  | 
+  75  | //   test('AUTH TC04 Register with invalid email should show error', async ({ page }) => {
+  76  | //     await page.goto('/register');
+  77  | 
+  78  | //     await page.locator('#FirstName').fill('Prabhav');
+  79  | //     await page.locator('#LastName').fill('Tiwari');
+  80  | //     await page.locator('#Email').fill('wrongemail');
+  81  | //     await page.locator('#Password').fill('Password@123');
+  82  | //     await page.locator('#ConfirmPassword').fill('Password@123');
+  83  | 
+  84  | //     await page.locator('#register-button').click();
+  85  | 
+  86  | //     await expect(page.locator('#Email-error')).toBeVisible();
+  87  | //   });
+  88  | 
+  89  | // // -Fills Password and Confirm Password with different values.
+  90  | // // -Submits registration form.
+  91  | // // -Verifies password mismatch error appears.
+  92  | 
+  93  | //   test('AUTH TC05 Register with password mismatch should show error', async ({ page }) => {
+  94  | //     await page.goto('/register');
+  95  | 
+  96  | //     await page.locator('#FirstName').fill('Prabhav');
+  97  | //     await page.locator('#LastName').fill('Tiwari');
+  98  | //     await page.locator('#Email').fill(generateEmail());
+  99  | //     await page.locator('#Password').fill('Password@123');
+  100 | //     await page.locator('#ConfirmPassword').fill('WrongPassword@123');
+  101 | 
+  102 | //     await page.locator('#register-button').click();
+  103 | 
+  104 | //     await expect(page.locator('#ConfirmPassword-error')).toBeVisible();
+  105 | //   });
+  106 | 
+  107 | // test('AUTH TC06 Register with valid details', async ({ page }) => {
+  108 | //   const email = `testuser${Date.now()}@gmail.com`;
+  109 | 
+  110 | //   await page.goto('/register', {
+  111 | //     waitUntil: 'domcontentloaded',
+  112 | //     timeout: 60000
+  113 | //   });
+  114 | 
+  115 | //   await page.locator('#gender-male').check();
+  116 | 
+  117 | //   await page.locator('#FirstName').fill('Prabhav');
+  118 | //   await page.locator('#LastName').fill('Tiwari');
+  119 | //   await page.locator('#Email').fill(email);
+  120 | 
+  121 | //   await page.locator('#Company').fill('NIET');
+  122 | 
+  123 | //   await page.locator('#Password').fill('Password@123');
+  124 | //   await page.locator('#ConfirmPassword').fill('Password@123');
+  125 | 
+  126 | //   await page.locator('#register-button').click();
+  127 | 
+  128 | //   await expect(page).toHaveURL(/registerresult/);
+  129 | // });
+  130 | 
+  131 | //   test('AUTH TC07 Login page should open', async ({ page }) => {
+  132 | //     await page.goto('/login');
+  133 | 
+  134 | //     await expect(page).toHaveURL(/login/);
+  135 | //   });
+  136 | 
+  137 | //   test('AUTH TC08 Login form fields should be visible', async ({ page }) => {
+  138 | //     await page.goto('/login');
+  139 | 
+  140 | //     await expect(page.locator('#Email')).toBeVisible();
+  141 | //     await expect(page.locator('#Password')).toBeVisible();
+  142 | //     await expect(page.locator('button.login-button')).toBeVisible();
+  143 | //   });
+  144 | 
+  145 | //   test('AUTH TC09 Login with empty fields should show validation', async ({ page }) => {
+  146 | //     await page.goto('/login');
+  147 | 
+  148 | //     await page.locator('button.login-button').click();
+  149 | 
+  150 | //     await expect(page.locator('#Email-error')).toBeVisible();
+  151 | //   });
+  152 | 
+  153 |   // test('AUTH TC10 Login with invalid email format', async ({ page }) => {
+  154 |   //   await page.goto('/login');
+  155 | 
+  156 |   //   await page.locator('#Email').fill('invalidemail');
+  157 |   //   await page.locator('#Password').fill('Password@123');
+  158 | 
+  159 |   //   await page.locator('button.login-button').click();
+  160 | 
+  161 |   //   await expect(page.locator('#Email-error')).toBeVisible();
+  162 |   // });
+  163 | 
+  164 |   test('AUTH TC11 Login with wrong credentials should show error', async ({ page }) => {
+  165 |     await page.goto('/login');
+  166 | 
+  167 |     await page.locator('#Email').fill('wronguser@gmail.com');
+  168 |     await page.locator('#Password').fill('WrongPassword@123');
+  169 | 
+  170 |     await page.locator('button.login-button').click();
+  171 | 
+> 172 |     await expect(page.locator('body')).toContainText('Login was unsuccessful');  });
+      |                                        ^ Error: expect(locator).toContainText(expected) failed
+  173 | 
+  174 |   // test('AUTH TC12 Remember me checkbox should be clickable', async ({ page }) => {
+  175 |   //   await page.goto('/login');
+  176 | 
+  177 |   //   await page.locator('#RememberMe').check();
+  178 | 
+  179 |   //   await expect(page.locator('#RememberMe')).toBeChecked();
+  180 |   // });
+  181 | 
+  182 |   // test('AUTH TC13 Forgot password page should open', async ({ page }) => {
+  183 |   //   await page.goto('/login');
+  184 | 
+  185 |   //   await page.locator('a[href="/passwordrecovery"]').click();
+  186 | 
+  187 |   //   await expect(page).toHaveURL(/passwordrecovery/);
+  188 |   // });
+  189 | 
+  190 |   // test('AUTH TC14 Password recovery field should be visible', async ({ page }) => {
+  191 |   //   await page.goto('/passwordrecovery');
+  192 | 
+  193 |   //   await expect(page.locator('#Email')).toBeVisible();
+  194 |   // });
+  195 | 
+  196 |   // test('AUTH TC15 Password recovery with empty email should show validation', async ({ page }) => {
+  197 |   //   await page.goto('/passwordrecovery');
+  198 | 
+  199 |   //   await page.locator('button.password-recovery-button').click();
+  200 | 
+  201 |   //   await expect(page.locator('#Email-error')).toBeVisible();
+  202 |   // });
+  203 | 
+  204 |  test('AUTH TC16 Password recovery with invalid email should show validation', async ({ page }) => {
+  205 | 
+  206 |   await page.goto('/passwordrecovery');
+  207 | 
+  208 |   await page.locator('#Email').fill('wrongemail');
+  209 | 
+  210 |   await page.locator('button.password-recovery-button').click();
+  211 | 
+  212 |   await expect(page.url()).toContain('passwordrecovery');
+  213 | 
+  214 | });
+  215 | 
+  216 | test('AUTH TC17 Registration success message should appear', async ({ page }) => {
+  217 | 
+  218 |   const email = `testuser${Date.now()}@gmail.com`;
+  219 | 
+  220 |   await page.goto('/register');
+  221 | 
+  222 |   await page.locator('#FirstName').fill('Prabhav');
+  223 |   await page.locator('#LastName').fill('Tiwari');
+  224 |   await page.locator('#Email').fill(email);
+  225 | 
+  226 |   await page.locator('#Password').fill('Password@123');
+  227 |   await page.locator('#ConfirmPassword').fill('Password@123');
+  228 | 
+  229 |   await page.locator('#register-button').click();
+  230 | 
+  231 |   await expect(page.locator('.result'))
+  232 |     .toContainText('Your registration completed');
+  233 | 
+  234 | });
+  235 | 
+  236 | // test('AUTH TC18 Register button should submit form', async ({ page }) => {
+  237 | 
+  238 | //   const email = `testuser${Date.now()}@gmail.com`;
+  239 | 
+  240 | //   await page.goto('/register');
+  241 | 
+  242 | //   await page.locator('#FirstName').fill('Prabhav');
+  243 | //   await page.locator('#LastName').fill('Tiwari');
+  244 | //   await page.locator('#Email').fill(email);
+  245 | 
+  246 | //   await page.locator('#Password').fill('Password@123');
+  247 | //   await page.locator('#ConfirmPassword').fill('Password@123');
+  248 | 
+  249 | //   await page.locator('#register-button').click();
+  250 | 
+  251 | //   await expect(page).toHaveURL(/register/);
+  252 | 
+  253 | // });
+  254 | // test('AUTH TC19 Registration result page should open', async ({ page }) => {
+  255 | 
+  256 | //   const email = `testuser${Date.now()}@gmail.com`;
+  257 | 
+  258 | //   await page.goto('/register');
+  259 | 
+  260 | //   await page.locator('#FirstName').fill('Prabhav');
+  261 | //   await page.locator('#LastName').fill('Tiwari');
+  262 | //   await page.locator('#Email').fill(email);
+  263 | 
+  264 | //   await page.locator('#Password').fill('Password@123');
+  265 | //   await page.locator('#ConfirmPassword').fill('Password@123');
+  266 | 
+  267 | //   await page.locator('#register-button').click();
+  268 | 
+  269 | //   await expect(page.url()).toContain('register');
+  270 | // });
+  271 | 
+  272 | test('AUTH TC20 Password field should accept input', async ({ page }) => {
+```
