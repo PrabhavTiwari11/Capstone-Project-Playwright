@@ -1,0 +1,113 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: wishlist.spec.js >> nopCommerce Wishlist Stable Tests >> WISHLIST TC04 Wishlist count visible in header
+- Location: tests\wishlist.spec.js:25:3
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: locator('.wishlist-qty')
+Expected: visible
+Timeout: 15000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 15000ms
+  - waiting for locator('.wishlist-qty')
+
+```
+
+```yaml
+- main:
+  - heading "demo.nopcommerce.com" [level=1]
+  - heading "Performing security verification" [level=2]
+  - paragraph: This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.
+- contentinfo:
+  - text: "Ray ID:"
+  - code: a02c71bbdc3a922c
+  - text: Performance and Security by
+  - link "Cloudflare":
+    - /url: https://www.cloudflare.com?utm_source=challenge&utm_campaign=m
+  - link "Privacy":
+    - /url: https://www.cloudflare.com/privacypolicy/
+```
+
+# Test source
+
+```ts
+  1  | const { test, expect } = require('@playwright/test');
+  2  | 
+  3  | test.describe('nopCommerce Wishlist Stable Tests', () => {
+  4  |   test.setTimeout(60000);
+  5  | 
+  6  |   test.beforeEach(async ({ page }) => {
+  7  |     await page.goto('https://demo.nopcommerce.com/wishlist');
+  8  |   });
+  9  | 
+  10 |   test('WISHLIST TC01 Open wishlist page', async ({ page }) => {
+  11 |     await expect(page).toHaveURL(/wishlist/);
+  12 |   });
+  13 | 
+  14 |   test('WISHLIST TC02 Wishlist heading or page should load', async ({ page }) => {
+  15 |     await expect(page.locator('body')).toContainText(/Wishlist|demo.nopcommerce.com/);
+  16 |   });
+  17 | 
+  18 | 
+  19 |   test('WISHLIST TC03 Wishlist link visible in header', async ({ page }) => {
+  20 |   await page.goto('https://demo.nopcommerce.com/wishlist');
+  21 |   await expect(page).toHaveURL(/wishlist/);
+  22 |   await expect(page.locator('body')).toBeVisible();
+  23 | });
+  24 | 
+  25 |   test('WISHLIST TC04 Wishlist count visible in header', async ({ page }) => {
+  26 |     await page.goto('https://demo.nopcommerce.com/');
+> 27 |     await expect(page.locator('.wishlist-qty')).toBeVisible();
+     |                                                 ^ Error: expect(locator).toBeVisible() failed
+  28 |   });
+  29 | 
+  30 | test('WISHLIST TC05 Click wishlist header link', async ({ page }) => {
+  31 |   await page.goto('https://demo.nopcommerce.com/', {
+  32 |     waitUntil: 'domcontentloaded'
+  33 |   });
+  34 | 
+  35 |   const wishlistLink = page.locator('.ico-wishlist');
+  36 | 
+  37 |   if (await wishlistLink.count() > 0) {
+  38 |     await wishlistLink.click();
+  39 |   } else {
+  40 |     await page.goto('https://demo.nopcommerce.com/wishlist');
+  41 |   }
+  42 | 
+  43 |   await expect(page).toHaveURL(/wishlist/);
+  44 | });
+  45 | 
+  46 |   test('WISHLIST TC06 Wishlist page body visible', async ({ page }) => {
+  47 |     await expect(page.locator('body')).toBeVisible();
+  48 |   });
+  49 | 
+  50 |   test('WISHLIST TC07 Wishlist page should not show server error', async ({ page }) => {
+  51 |     await expect(page.locator('body')).not.toContainText('Internal Server Error');
+  52 |   });
+  53 | 
+  54 |   test('WISHLIST TC08 Wishlist page should not show 404', async ({ page }) => {
+  55 |     await expect(page.locator('body')).not.toContainText('404');
+  56 |   });
+  57 | 
+  58 |   test('WISHLIST TC09 Wishlist URL should be correct', async ({ page }) => {
+  59 |     await expect(page).toHaveURL(/\/wishlist/);
+  60 |   });
+  61 | 
+  62 |   test('WISHLIST TC10 Page title should contain nopCommerce or Wishlist', async ({ page }) => {
+  63 |     const title = await page.title();
+  64 |     expect(title).toMatch(/nopCommerce|Wishlist/i);
+  65 |   });
+  66 | });
+```
