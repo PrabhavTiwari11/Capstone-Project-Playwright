@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 function generateEmail() {
-  return `testuser${Date.now()}@gmail.com`;
+  return `tiwariprabhav143@gmail.com`;
 }
 
 test.describe('nopCommerce Authentication Test Cases', () => {
@@ -104,7 +104,7 @@ test('AUTH TC03 Register with empty form should show validation', async ({ page 
     await expect(page.locator('body')).toContainText('The password and confirmation password do not match.');  });
 
 test('AUTH TC06 Register with valid details', async ({ page }) => {
-  const email = `testuser${Date.now()}@gmail.com`;
+  const email = `tiwariprabhav143@gmail.com`;
 
   await page.goto('/register', {
     waitUntil: 'domcontentloaded',
@@ -222,7 +222,7 @@ test('AUTH TC15 Password recovery with empty email should show validation', asyn
 });
 
 test('AUTH TC17 Register form should accept valid user data', async ({ page }) => {
-  const email = `testuser${Date.now()}@gmail.com`;
+  const email = `tiwariprabhav143@gmail.com`;
 
   await page.goto('/register', {
     waitUntil: 'domcontentloaded',
@@ -242,7 +242,7 @@ test('AUTH TC17 Register form should accept valid user data', async ({ page }) =
 
 test('AUTH TC18 Register button should submit form', async ({ page }) => {
 
-  const email = `testuser${Date.now()}@gmail.com`;
+  const email = `tiwariprabhav143@gmail.com`;
 
   await page.goto('/register');
 
@@ -260,7 +260,7 @@ test('AUTH TC18 Register button should submit form', async ({ page }) => {
 });
 test('AUTH TC19 Registration result page should open', async ({ page }) => {
 
-  const email = `testuser${Date.now()}@gmail.com`;
+  const email = `tiwariprabhav143@gmail.com`;
 
   await page.goto('/register');
 
