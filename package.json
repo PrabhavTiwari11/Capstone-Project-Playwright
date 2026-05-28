@@ -2,7 +2,9 @@
   "name": "capstone-project-playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {"test": "playwright test",
+    "test:ci": "playwright test",
+    "allure:generate": "allure generate allure-results -o allure-report"},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PrabhavTiwari11/Capstone-Project-Playwright.git"
