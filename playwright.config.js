@@ -22,19 +22,19 @@ export default defineConfig({
   },
 
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: 1,
   /* Opt out of parallel tests on CI. */
-  workers: 2,
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'], ['allure-playwright', { resultsDir: 'allure-results' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: 'https://demo.nopcommerce.com',
-    headless: false,
+    headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
@@ -51,9 +51,9 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        ...devices['Desktop Chrome'],
-        channel: 'chrome'
-      },    },
+      ...devices['Desktop Chrome']
+      },
+   },
 
     // {
     //   name: 'firefox',
