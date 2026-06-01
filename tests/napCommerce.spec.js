@@ -29,9 +29,9 @@ test.describe('nopCommerce Basic Test Cases', () => {
     await expect(page.getByRole('link', { name: 'Log in' })).toBeVisible();
   });
 
-  test('TC04 Search box should be visible', async ({ page }) => {
-    await expect(page.locator('#small-searchterms')).toBeVisible();
-  });
+test('TC04 Search box should be visible', async ({ page }) => {
+  await expect(page.locator('#small-searchterms')).toBeVisible();
+});
 
 test('TC05 Search laptop product', async ({ page }) => {
   await page.locator('#small-searchterms').fill('laptop');

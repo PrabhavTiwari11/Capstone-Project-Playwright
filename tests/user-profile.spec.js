@@ -101,8 +101,7 @@ test('PROFILE TC06 Last name field should be visible', async ({ page }) => {
 
   test('PROFILE TC07 Email field should be visible', async ({ page }) => {
     await openProfileWithLoggedInUser(page);
-    await expect(page.locator('#Email')).toBeVisible();
-  });
+    await expect(page.locator('input[name="Email"]')).toBeVisible();  });
 
   test('PROFILE TC08 Company field should be visible', async ({ page }) => {
     await openProfileWithLoggedInUser(page);
@@ -132,7 +131,7 @@ test('PROFILE TC10 Last name should accept input', async ({ page }) => {
   test('PROFILE TC11 Company name should accept input', async ({ page }) => {
     await openProfileWithLoggedInUser(page);
 
-    await page.locator('#Company').fill('Wipro Training');
+    await page.locator('input[name="Company"]').fill('Wipro Training');
     await expect(page.locator('#Company')).toHaveValue('Wipro Training');
   });
 
