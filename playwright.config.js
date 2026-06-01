@@ -38,13 +38,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
-    storageState: 'auth/storageState.json',
-    actionTimeout: 30000,
-    navigationTimeout: 60000,
-    slowMo: 1000,
-    extraHTTPHeaders: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
-    },
+    storageState: 'auth/storageState.json'
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
