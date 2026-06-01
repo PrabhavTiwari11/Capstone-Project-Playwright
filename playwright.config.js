@@ -39,6 +39,12 @@ export default defineConfig({
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
     storageState: 'auth/storageState.json',
+    actionTimeout: 30000,
+    navigationTimeout: 60000,
+    slowMo: 1000,
+    extraHTTPHeaders: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
+    },
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
@@ -50,39 +56,41 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1366, height: 768 } },
-    },
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome'
+      },    },
 
-  //   {
-  //     name: 'firefox',
-  //     use: { ...devices['Desktop Firefox'] , viewport: { width: 1366, height: 768 }},
-  //   },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-  //   {
-  //     name: 'webkit',
-  //     use: { ...devices['Desktop Safari'], viewport: { width: 1366, height: 768 } },
-  //   },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
-  //   /* Test against mobile viewports. */
-  //   {
-  //     name: 'Mobile Chrome',
-  //     use: { ...devices['Pixel 5'] },
-  //   },
-  //   {
-  //     name: 'Mobile Safari',
-  //     use: { ...devices['iPhone 12'] },
-  //   },
+    // /* Test against mobile viewports. */
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
 
-  //   /* Test against branded browsers. */
-  //   {
-  //     name: 'Microsoft Edge',
-  //     use: { ...devices['Desktop Edge'], channel: 'msedge' },
-  //   },
-  //   {
-  //     name: 'Google Chrome',
-  //     use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-  //   },
-  // ],
+    // /* Test against branded browsers. */
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    // },
+    // {
+    //   name: 'Google Chrome',
+    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    // },
+  ],
 
   /* Run your local dev server before starting the tests */
   // webServer: {
@@ -92,7 +100,7 @@ export default defineConfig({
   // },
 
   
-]});
+});
 
 
 
