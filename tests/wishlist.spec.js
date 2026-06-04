@@ -1,75 +1,66 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
+import { open, expectVisible } from './helpers.js';
 
-test.describe('nopCommerce Wishlist Stable Tests', () => {
-  test.setTimeout(60000);
-
-  test.beforeEach(async ({ page }) => {
-    await page.goto('https://demo.nopcommerce.com/wishlist');
+test.describe('Wishlist Service', () => {
+  test('WISH TC01 Wishlist page opens', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expectVisible(page, '.wishlist-page');
   });
 
-  test('WISHLIST TC01 Open wishlist page', async ({ page }) => {
+  test('WISH TC02 Wishlist link visible', async ({ page }) => {
+    await open(page);
+    await expectVisible(page, '.ico-wishlist');
+  });
+
+  test('WISH TC03 Wishlist quantity visible', async ({ page }) => {
+    await open(page);
+    await expectVisible(page, '.wishlist-qty');
+  });
+
+  test('WISH TC04 Wishlist content visible', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expectVisible(page, '.wishlist-content');
+  });
+
+  test('WISH TC05 Wishlist URL should be correct', async ({ page }) => {
+    await open(page, '/wishlist');
     await expect(page).toHaveURL(/wishlist/);
   });
 
-  test('WISHLIST TC02 Wishlist heading or page should load', async ({ page }) => {
-    await expect(page.locator('body')).toContainText(/Wishlist|demo.nopcommerce.com/);
+  test('WISH TC06 Wishlist title visible', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expect(page.locator('h1')).toContainText(/Wishlist/i);
+  });
+
+  test('WISH TC08 Wishlist body visible', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expectVisible(page, 'body');
+  });
+
+  test('WISH TC09 Wishlist page layout visible', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expectVisible(page, '.page-body');
+  });
+
+  test('WISH TC10 Wishlist h1 visible', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expectVisible(page, 'h1');
+  });
+
+  test('WISH TC11 Wishlist no crash check', async ({ page }) => {
+    await open(page, '/wishlist');
+    await expect(page.locator('body')).not.toBeEmpty();
+  });
+
+  test('WISH TC12 Gift cards page opens for wishlist product', async ({ page }) => {
+    await open(page, '/gift-cards');
+    await expectVisible(page, '.product-grid');
+  });
+
+  test('WISH TC13 Product item visible on gift cards', async ({ page }) => {
+    await open(page, '/gift-cards');
+    await expectVisible(page, '.product-item');
   });
 
 
-  test('WISHLIST TC03 Wishlist link visible in header', async ({ page }) => {
-  await page.goto('https://demo.nopcommerce.com/wishlist');
-  await expect(page).toHaveURL(/wishlist/);
-  await expect(page.locator('body')).toBeVisible();
-});
-
-test('WISHLIST TC04 Wishlist count visible in header', async ({ page }) => {
-  await page.goto('https://demo.nopcommerce.com/', {
-    waitUntil: 'domcontentloaded'
-  });
-
-  const wishlistCount = page.locator('.wishlist-qty');
-
-  if (await wishlistCount.count() > 0) {
-    await expect(wishlistCount).toBeVisible();
-  } else {
-    await expect(page.locator('body')).toBeVisible();
-  }
-});
-
-test('WISHLIST TC05 Click wishlist header link', async ({ page }) => {
-  await page.goto('https://demo.nopcommerce.com/', {
-    waitUntil: 'domcontentloaded'
-  });
-
-  const wishlistLink = page.locator('.ico-wishlist');
-
-  if (await wishlistLink.count() > 0) {
-    await wishlistLink.click();
-  } else {
-    await page.goto('https://demo.nopcommerce.com/wishlist');
-  }
-
-  await expect(page).toHaveURL(/wishlist/);
-});
-
-  test('WISHLIST TC06 Wishlist page body visible', async ({ page }) => {
-    await expect(page.locator('body')).toBeVisible();
-  });
-
-  test('WISHLIST TC07 Wishlist page should not show server error', async ({ page }) => {
-    await expect(page.locator('body')).not.toContainText('Internal Server Error');
-  });
-
-  test('WISHLIST TC08 Wishlist page should not show 404', async ({ page }) => {
-    await expect(page.locator('body')).not.toContainText('404');
-  });
-
-  test('WISHLIST TC09 Wishlist URL should be correct', async ({ page }) => {
-    await expect(page).toHaveURL(/\/wishlist/);
-  });
-
-  test('WISHLIST TC10 Page title should contain nopCommerce or Wishlist', async ({ page }) => {
-    const title = await page.title();
-    expect(title).toMatch(/nopCommerce|Wishlist/i);
-  });
 });
