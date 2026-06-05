@@ -1,87 +1,364 @@
-Project Title : 
------------------
-Automation Testing of nopCommerce Demo Store Website Using Playwright
-
-This project is based on automation testing of the nopCommerce Demo Store website using Playwright.
-nopCommerce Demo Store is an online shopping website where users can register, login, search products, add items to cart or wishlist, place orders, manage addresses, and complete payments.
-
-In this project, different features of the website will be tested automatically using Playwright.
-The main purpose of the project is to check whether all important functionalities of the website are working properly or not. The testing includes modules like login, registration, product search, shopping cart, wishlist, checkout, payment, and user profile management.
-
-This project is created as a QA automation capstone project to learn and demonstrate different testing concepts such as functional testing, UI testing, regression testing, API testing, and cross-browser testing in a simple and practical way.
-   
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Website Details
------------------
-Field	                                                             Details
-Website Name	                                                     nopCommerce Demo Store
-Website URL	                                                         https://demo.nopcommerce.com/
-Testing Tool	                                                     Playwright
-Programming Language	                                             JavaScript
-IDE Used	                                                         VS Code
-Version Control	                                                     Git & GitHub
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Services Tested
--------------------
+                              Automation Testing of Demo Web Shop Website Using Playwright
+                             ---------------------------------------------------------------
+
+This project is based on automation testing of the Demo Web Shop website using Playwright.
+
+Demo Web Shop is an e-commerce website where users can register, login, search products, browse categories, view product details, add products to shopping cart and wishlist, manage their account information, place orders, and interact with different website features such as contact forms, newsletters, and product reviews.
+
+The objective of this project is to automate the testing of critical business functionalities and verify that all features are working correctly across different browsers.
 
 
-1. Authentication
 
-- User Registration
-- User Login
-- Forgot Password
-- Logout
-- Session Validation
+The project demonstrates various automation testing concepts including:
 
-2. Product Search
+1. Functional Testing
+2. UI Testing
+3. End-to-End Testing
+4. Data Driven Testing
+5. Cross Browser Testing
+6. Page Object Model (POM)
+7. Reusable Utilities
+8. Test Data Generation
+9. Assertions & Validations
+10.GitHub Integration
+11.CI/CD Ready Framework
 
-- Search valid products
-- Search invalid products
-- Category-based search
-- Advanced search validation
 
-3. Product Details
 
-- Product image validation
-- Product price validation
-- Product specification check
-- Product review validation
 
-4. Shopping Cart
+Website Details : 
+------------------
 
-- Add to cart
-- Remove from cart
-- Update quantity
-- Cart total validation
 
-5. Wishlist Module
+Field	                                                                                    Details
+Website Name	                                                                            Demo Web Shop
+Website URL                                                                             	https://demowebshop.tricentis.com
+Testing Tool	                                                                            Playwright
+Programming Language	                                                                    JavaScript
+Framework	                                                                                Playwright Test
+IDE Used	                                                                                VS Code
+Design Pattern	                                                                            Page Object Model (POM)
+Version Control	                                                                            Git & GitHub
+Reporting	                                                                                HTML Report / Allure Report
+Browsers Tested	                                                                            Chromium, Firefox, WebKit  
 
-- Add product to wishlist
-- Remove wishlist item
-- Move wishlist item to cart
-- Wishlist persistence validation
 
-6. Checkout
 
-- Billing address validation
-- Shipping method selection
-- Order summary validation
-- Checkout confirmation
 
-7. Payment
 
-- Payment method selection
-- Payment information validation
-- Payment confirmation
-- Order success validation
+Framework Structure : 
+----------------------
 
-8. User Profile / Order History
 
-- View user profile
-- Manage addresses
-- View previous orders
-- Update account details
+Capstone-Project-Playwright
+│
+├── tests
+│   ├── authentication.spec.js
+│   ├── registration.spec.js
+│   ├── search.spec.js
+│   ├── productDetails.spec.js
+│   ├── categories.spec.js
+│   ├── cart.spec.js
+│   ├── wishlist.spec.js
+│   ├── checkout.spec.js
+│   ├── userAccount.spec.js
+│   └── contact.spec.js
+│
+├── pages
+│   ├── HomePage.js
+│   ├── LoginPage.js
+│   ├── RegisterPage.js
+│   └── CartPage.js
+│
+├── utils
+│   └── testDataGenerator.js
+│
+├── helpers.js
+│
+├── playwright.config.js
+│
+├── package.json
+│
+└── README.md
+
+
+
+
+Services Tested : 
+------------------
+
+
+1. Authentication Service : 
+----------------------------
+
+Purpose :
+----------
+
+Validate login related functionalities.
+
+Test Coverage :
+
+Login page opening
+Email field validation
+Password field validation
+Login button validation
+Remember Me checkbox validation
+Forgot Password validation
+Empty login validation
+Invalid email validation
+Password recovery validation
+Login page URL validation
+
+Test Cases: 10
+
+2. Registration Service
+-------------------------
+
+Purpose :
+----------
+
+Validate new user registration functionality.
+
+Test Coverage :
+
+Gender selection validation
+First name field validation
+Last name field validation
+Email field validation
+Password field validation
+Confirm password validation
+Register button validation
+Mandatory field validation
+Registration form validation
+Registration URL validation
+
+Test Cases: 10
+
+3. Product Search Service
+----------------------------
+
+Purpose :
+----------
+
+Validate product search functionality.
+
+Test Coverage :
+
+Search box validation
+Search button validation
+Search using keywords
+Search result validation
+Search page validation
+Search URL validation
+Product discovery verification
+Search navigation validation
+
+Test Cases: 08
+
+4. Product Details Service
+----------------------------
+
+Purpose :
+---------
+
+Validate product information displayed to customers.
+
+Test Coverage :
+
+Product details page validation
+Product name validation
+Product price validation
+Product image validation
+Product overview validation
+Product description validation
+Product review section validation
+Add to Cart button validation
+Compare product validation
+Email a Friend validation
+
+Test Cases: 10
+
+5. Product Categories Service :
+--------------------------------
+
+Purpose :
+---------
+
+Validate category navigation and category pages.
+
+Test Coverage :
+
+Books category validation
+Computers category validation
+Electronics category validation
+Apparel & Shoes validation
+Digital Downloads validation
+Jewelry category validation
+Gift Cards validation
+Sort dropdown validation
+View mode validation
+Category navigation validation
+
+Test Cases: 10
+
+6. Shopping Cart Service : 
+----------------------------
+
+Purpose :
+----------
+
+Validate shopping cart functionality.
+
+Test Coverage:
+
+Cart page validation
+Cart quantity validation
+Add to cart functionality
+Open cart validation
+Cart URL validation
+Cart title validation
+Cart summary validation
+Cart content validation
+Cart page structure validation
+
+Test Cases: 09
+
+7. Wishlist Service
+--------------------
+
+Purpose :
+----------
+
+Validate wishlist functionality.
+
+Test Coverage :
+
+Wishlist page validation
+Wishlist quantity validation
+Wishlist content validation
+Wishlist URL validation
+Wishlist title validation
+Wishlist page layout validation
+Wishlist product validation
+Wishlist navigation validation
+
+Test Cases: 08
+
+8. Checkout Service
+---------------------
+
+Purpose :
+----------
+
+Validate checkout workflow.
+
+Test Coverage :
+
+Guest checkout validation
+Checkout page validation
+Checkout button validation
+Cart summary validation
+Checkout navigation validation
+Checkout page structure validation
+Guest checkout workflow validation
+
+Test Cases: 07
+
+9. User Account Service
+------------------------
+
+Purpose :
+----------
+
+Validate account management functionalities.
+
+Test Coverage :
+
+Customer information page validation
+Address management validation
+Order history validation
+Downloadable products validation
+Reward points validation
+Password management validation
+Account navigation validation
+Login redirection validation
+
+Test Cases: 08
+
+10. Contact, Newsletter & Poll Service
+-----------------------------------------
+
+Purpose :
+----------
+
+Validate customer interaction features.
+
+Test Coverage :
+
+Contact Us page validation
+Contact form validation
+Newsletter subscription validation
+Newsletter email validation
+Poll section validation
+Poll voting validation
+Sitemap validation
+Footer validation
+
+Test Cases: 08
+
+
+
+Page Object Model (POM) : 
+---------------------------
+
+The framework follows the Page Object Model design pattern.
+
+Pages Implemented :
+
+HomePage.js
+LoginPage.js
+RegisterPage.js
+CartPage.js
+
+Benefits :
+
+Better code reusability
+Easy maintenance
+Reduced code duplication
+Cleaner test scripts
+Improved scalability
+Utility Implementation
+Test Data Generator
+
+Implemented File:
+
+utils/testDataGenerator.js
+
+Features:
+
+Dynamic Email Generation
+Dynamic User Creation
+Reusable Test Data
+Duplicate Registration Prevention
+
+Example:
+
+generateEmail();
+generateUser();
+
+
+
+Total Project Statistics : 
+------------------------------
+
+
+Item	                           Count
+Services	                       10
+Test Specification Files	       10
+Page Object Files	               04
+Utility Files	                    01
+Test Cases	                       130+
+Browsers	                       04
+Reports	                           HTML + Allure

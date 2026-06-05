@@ -32,32 +32,32 @@ test.describe('Wishlist Service', () => {
     await expect(page.locator('h1')).toContainText(/Wishlist/i);
   });
 
-  test('WISH TC08 Wishlist body visible', async ({ page }) => {
+  test('WISH TC07 Wishlist body visible', async ({ page }) => {
     await open(page, '/wishlist');
     await expectVisible(page, 'body');
   });
 
-  test('WISH TC09 Wishlist page layout visible', async ({ page }) => {
+  test('WISH TC08 Wishlist page layout visible', async ({ page }) => {
     await open(page, '/wishlist');
     await expectVisible(page, '.page-body');
   });
 
-  test('WISH TC10 Wishlist h1 visible', async ({ page }) => {
+  test('WISH TC09 Wishlist h1 visible', async ({ page }) => {
     await open(page, '/wishlist');
     await expectVisible(page, 'h1');
   });
 
-  test('WISH TC11 Wishlist no crash check', async ({ page }) => {
+  test('WISH TC10 Wishlist no crash check', async ({ page }) => {
     await open(page, '/wishlist');
     await expect(page.locator('body')).not.toBeEmpty();
   });
 
-  test('WISH TC12 Gift cards page opens for wishlist product', async ({ page }) => {
+  test('WISH TC11 Gift cards page opens for wishlist product', async ({ page }) => {
     await open(page, '/gift-cards');
     await expectVisible(page, '.product-grid');
   });
 
-  test('WISH TC13 Product item visible on gift cards', async ({ page }) => {
+  test('WISH TC12 Product item visible on gift cards', async ({ page }) => {
     await open(page, '/gift-cards');
     await expectVisible(page, '.product-item');
   });
